@@ -9,7 +9,7 @@
     <h1>アンケート</h1>
     <ul>
     <li><a href="input_enq.php">入力ページへ行く</a></li>
-    <li><a href="hairetsu.php">アンケート結果をみる</a></li>
+    <li><a href="show_enp.php">アンケート結果をみる</a></li>
     </ul>
 </body>
 </html>
