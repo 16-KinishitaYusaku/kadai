@@ -13,9 +13,6 @@
         <article class="news-detail">
             <dl class="clearfix">
                 <?php
-$sql = "SELECT * FROM enq";
-//$sqlCrTime = "SELECT news_id,create_date FROM news ORDER BY create_date DESC LIMIT 3";
-//$sql = "SELECT news_id,create_date,news_title FROM news ORDER BY create_date DESC  LIMIT 5";
 $sql = "SELECT news_id,LEFT(create_date,10),LEFT(news_title,25) FROM news ORDER BY create_date DESC  LIMIT 5";
 
 $stmt = $pdo->prepare($sql);
@@ -23,7 +20,7 @@ $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 foreach($result as $row){
     echo '<dt class="news-date">'.$row["LEFT(create_date,10)"].'</dt>';
-    echo '<dd class="news-description"><a href="news.html" style="color:blue">'.$row["LEFT(news_title,25)"].'…</a></dd>';
+    echo '<dd class="news-description"><a href="news.php?news_id='.$row["news_id"].'" style="color:blue">'.$row["LEFT(news_title,25)"].'…</a></dd>';
 }
                     $pdo = null;
                 ?>
