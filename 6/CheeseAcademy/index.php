@@ -25,7 +25,7 @@ foreach($result as $row){
                     $pdo = null;
                 ?>
             </dl>
-            <p class="view-detail text-right"><a href="#"><a href="news_list.php">ニュース一覧を見る</a></p>
+            <p class="view-detail text-right"><a href="news_list.php">ニュース一覧を見る</a></p>
         </article>
     </section>
    

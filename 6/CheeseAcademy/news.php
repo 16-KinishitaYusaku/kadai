@@ -18,6 +18,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <dd class="news-title"><h2><?php echo $result[0]["news_title"]; ?></h2></dd>
                 <dd><?php echo $result[0]["news_detail"]; ?></dd>
             </dl>
+            <?php $pdo = null; ?>
             <p class="view-detail text-right"><a href="news_list.php">ニュース一覧を見る</a></p>
         </article>
     </section>
