@@ -1,3 +1,4 @@
+<!--左側にtag一覧を出す-->
 <?php
     $tag_id;
     $tag_name;
@@ -20,7 +21,7 @@
 <div id="tags">
     <?php 
 for($i=0;$i<count($tag_name);$i++){
-    echo '<div class="tag"><a href="detail.php?tag_id='.$tag_id[$i].'">'.$tag_name[$i].'</a></div>';
+    echo '<div class="tag"><a href="tag.php?tag_id='.$tag_id[$i].'">'.$tag_name[$i].'</a></div>';
 }
     ?>
 <!--
