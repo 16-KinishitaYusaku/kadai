@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>limeApp</title>
+    <link rel="stylesheet" href="limeApp.css">
+    <!-- jQuery読み込み-->
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src='https://cdn.mlkcca.com/v2.0.0/milkcocoa.js'></script>
+</head>
+<body class="bodyLimeApp">
+    <div class="nameZone">
+        <h2 class="ttlTxt">Lime</h2>
+    </div>
+    <div class="chatZone">
+        <div id="dummy"></div>
+    </div>
+    <div class="inputZone">
+        <div class="inputText">
+            <textarea name="" id="inputForm" cols="55" rows="2" placeholder="メッセージを入力"></textarea>
+            <button id="post">送信</button>
+        </div>
+        <div class="deleteArea">
+            <button id="delete">delete</button> ←【注意】これまでのメッセージが全消去されます！！
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        $(function(){
+            var milkcocoa = new MilkCocoa("guitarifc73gk3.mlkcca.com");
+            var ds = milkcocoa.dataStore("message");
+            
+            ds.stream().sort("desc").next(function(err,datas){
+                datas.forEach(function(data){
+                    renderMessage(data);
+                });
+            });
+            
+            ds.on("push", function(e){
+                renderMessage(e);
+            });
+            
+            var last_message = "dummy";
+            
+            function renderMessage(message){
+                var message_html = '<div class="post-text"><p>' + escapeHTML(message.value.content) + '</p></div>';
+                
+                var date_html = '';
+                if(message.value.date){
+//                    console.log(new Date(message.value.date).toLocaleString());
+                    date_html = '<div class="post-date">' + escapeHTML(new Date(message.value.date).toLocaleString())+'</div>';
+                }
+                
+                $("#"+last_message).before('<div id="'+message.id+'" class="post">'+message_html + date_html + '</div>'
+                                           +'<div></div>');
+                last_message = message.id;
+            }
+            
+            //"message"データストアにメッセージをプッシュする
+            function post(){
+                var content = escapeHTML($("#inputForm").val());
+                if(content && content !== ""){
+                    ds.push({
+                        name: "名前",
+                        date: new Date().getTime(),
+                        content: content
+                    }, function(e){});
+                }
+                $("#inputForm").val("");
+            }
+            
+            $('#post').click(function(){
+                post();
+            });
+            
+
+            
+            $('#delete').click(function(){
+                if(window.confirm('これまでの全てのメッセージのやりとりが削除されます。¥n本当によろしいですか？'){
+//                   ds.remove('*',function(er,removed){
+                },);
+                
+            });
+            
+            $('#content').keydown(function(e){
+                if(e.which == 13){
+                    post();
+                    return false;
+                }
+            });
+            
+        });
+        
+        //インジェクション対策
+        function escapeHTML(val){
+            return $('<div>').text(val).html();
+        };
+    </script>
+</body>
+</html>

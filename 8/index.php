@@ -10,7 +10,8 @@ require("sql_setup.php");
     $news_reference;
     $news_clip_num;
 
-    $sql_news = "SELECT id,LEFT(title,40),LEFT(detail,150),reference,clip_num FROM news WHERE show_flg=1";
+//    $sql_news = "SELECT id,LEFT(title,40),LEFT(detail,150),reference,clip_num FROM news WHERE show_flg=1";
+    $sql_news = "SELECT id,LEFT(title,40),LEFT(detail,150),reference,clip_num FROM news WHERE show_flg=1 ORDER BY clip_num DESC";
     $stmt_news = $pdo->prepare($sql_news);
     $stmt_news->execute();
     $result_news = $stmt_news->fetchAll(PDO::FETCH_ASSOC);
