@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>teraflame</title>
+    <link rel="stylesheet" type="text/css" href="widget_usaq.css">
+</head>
+<body class="body_taraframe">
+    <div class="tt_embed_wrapper">
+        <div class="tt_embed_wrapper_inner">
+            
+            <!-- 質問情報 -->
+            <div class="tt_embed_boxItem">
+                <!-- メインアイコン -->
+                <div class="boxItemIcon">
+                    <a href="">
+                        <img src="teratail_logo.png" alt="teratail.com" title="teratail.com" width="100px" height="100px">
+                    </a>
+                </div>
+                <!-- タイトルと本文 -->
+                <div class="boxItemContent">
+                    <h2 class="ttlItem">
+                        <a href="" id="teraTitle"></a>
+                    </h2>
+                    <div class="boxItemDate">
+                        <span id="teraState">回答受付中</span> <span id="txtResponses">100</span>回答
+                    </div>
+                    <div class="txtHiddenQuestion">
+                        <p class="txt" id="teraBody"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- tag情報 -->
+            <div class="tt_embed_boxRelevanceTag">
+                <ul class="boxTag">
+                    <li class="bkgCate_b" id="tera_q_tags0"></li>
+                    <li class="bkgCate_b" id="tera_q_tags1"></li>
+                    <li class="bkgCate_b" id="tera_q_tags2"></li>
+                    <li class="bkgCate_b" id="tera_q_tags3"></li>
+                    <li class="bkgCate_b" id="tera_q_tags4"></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        var request = new XMLHttpRequest();
+        var J;
+        var id;
+        // request.open('GET', 'https://teratail.com/api/v1/questions/16878');
+        // request.open('GET', 'https://teratail.com/api/v1/questions/14540');
+        request.open('GET', 'https://teratail.com/api/v1/questions/17102');
+
+        request.onreadystatechange = function () {
+          if (this.readyState === 4) {
+              J = JSON.parse(this.responseText);
+              id = J.question.id;
+//              title = document.getElementById("tera_q_title");
+//              title.innerHTML = J.question.title;
+              txtResponses.innerHTML = J.question.count_reply;
+              console.log(J.question.title.slice(0,40));
+              //タイトルは41文字制限
+              if(J.question.title.length > 41){
+                  teraTitle.innerHTML = J.question.title.slice(0,40)+"…";
+              }else{
+                  teraTitle.innerHTML = J.question.title;
+              }
+              
+              //trueが解決済み
+              if(J.question.is_accepted){
+                  teraState.innerHTML = "解決済";
+              }else{
+                  teraState.innerHTML = "回答受付中";
+              }
+              
+              //bodyは64文字制限
+              if(J.question.body.length > 64){
+                  teraBody.innerHTML = J.question.body.slice(0,63)+"…";
+              }else{
+                  teraBody.innerHTML = J.question.body;
+              }
+              
+              //タグ生成
+              for(i=0;i<J.question.tags.length;i++){
+                  tera_q_tags = document.getElementById("tera_q_tags"+i);
+                  tera_q_tags.style.visibility = "visible";
+                  tera_q_tags.innerHTML = J.question.tags[i];
+              }
+//              console.log(J.question.replies[0].body);
+          }
+        };
+        
+        request.send();
+        
+    </script>
+
+    </body>
+</html>

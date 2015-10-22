@@ -1,0 +1,96 @@
+body{
+    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS P Gothic", Verdana, sans-serif;
+}
+
+.body_taraframe{
+    height: 149px;
+    margin: 0;
+}
+
+.tt_embed_wrapper{
+    height: 147px;
+    border: 1px solid #ddd;
+    border-radius: 3px
+}
+
+.tt_embed_wrapper_inner{
+    height: 147px;
+    padding: 10px;
+}
+
+/* 質問情報 */
+.tt_embed_boxItem{
+    height: 100px;
+    /*overflow: hidden;*/
+}
+    
+/* メインアイコン */
+    .boxItemIcon{
+        width: 100px;
+        float: right;
+        margin-left: 10px;
+    }
+
+/* タイトルと本文 */
+.boxItemContent{
+    width: auto;
+    height: 100px;
+/*        float: left;*/
+}
+
+    .ttlItem{
+        margin: 0 0 1px 0;
+        font-size: 17px;
+    }
+    
+    .ttlItem a{
+        color: #117ec6;
+        text-decoration: none;
+    }
+    
+    .boxItemDate{
+        font-size: 12px;
+        font-weight: bold;
+        margin: 0 0 1px 0;
+    }
+
+    .txtHiddenQuestion{
+        font-size: 11px;
+    }
+    
+        .txt{
+            margin: 0;
+            color: #333;
+        }
+
+/* タグ情報 */
+.tt_embed_boxRelevanceTag{
+    height: 19px;
+    margin-top: 8px;
+    /*overflow: hidden;*/
+}
+
+    .boxTime{
+/*            width: 40px;*/
+        float: left;
+        margin: 0;
+    }
+
+    .boxTag{
+        height: 18px;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        overflow: hidden;
+    }
+
+        .bkgCate_b{
+            font-size: 6px;
+            color: #545b67;
+            background-color: #C3D9E7;
+            padding: 1.5px;
+            border-radius: 3px;
+            margin-right: 6px;
+            float: left;
+            visibility: hidden;
+        }
